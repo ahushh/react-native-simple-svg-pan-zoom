@@ -1,3 +1,7 @@
+# react-native-simple-svg-pan-zoom
+
+This repo is used by [react-native-simple-maps](https://github.com/ahushh/react-native-simple-maps) - an svg map component for React Native.
+
 # react-native-svg-pan-zoom
 Pan-zoom for [react-native-svg](https://github.com/react-native-community/react-native-svg) via "Google Maps"-style pinch and drag gestures.
 

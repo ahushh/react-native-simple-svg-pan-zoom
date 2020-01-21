@@ -1,5 +1,5 @@
 {
-  "name": "react-native-svg-pan-zoom",
+  "name": "react-native-simple-svg-pan-zoom",
   "version": "0.1.2",
   "description": "Pan-zoom for react-native-svg via 'Google Maps'-style pinch and drag gestures",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garblovians/react-native-svg-pan-zoom.git"
+    "url": "git+https://github.com/ahushh/react-native-simple-svg-pan-zoom.git"
   },
   "keywords": [
     "react",
@@ -25,13 +25,14 @@
   ],
   "authors": [
     "Lukas Hedegaard <lxhdgd@gmail.com> (https://github.com/LukasHedegaard)",
-    "Søren Peter Andersen (https://github.com/sorenpa)"
+    "Søren Peter Andersen (https://github.com/sorenpa)",
+    "Alexander Polyakov (https://github.com/ahushh)"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/garblovians/react-native-svg-pan-zoom/issues"
+    "url": "https://github.com/ahushh/react-native-simple-svg-pan-zoom/issues"
   },
-  "homepage": "https://github.com/garblovians/react-native-svg-pan-zoom#readme",
+  "homepage": "https://github.com/ahushh/react-native-simple-svg-pan-zoom#readme",
   "devDependencies": {
     "@types/react": "^16.0.27",
     "react": "^16.2.0",
