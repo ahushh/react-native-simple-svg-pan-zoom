@@ -1,7 +1,6 @@
-/// <reference types="react" />
-import { Component } from 'react';
-import { PanResponderInstance, Animated, ViewStyle } from 'react-native';
-import { Point, ViewTransform, ViewDimensions } from './interfaces';
+import { Component } from "react";
+import { PanResponderInstance, Animated, ViewStyle } from "react-native";
+import { Point, ViewTransform, ViewDimensions } from "./interfaces";
 /*********************************************************
  * Interfaces
  *********************************************************/
@@ -14,6 +13,7 @@ export interface Props {
     canvasStyle?: ViewStyle;
     viewStyle?: ViewStyle;
     onZoom?: (zoom: number) => void;
+    disabled?: boolean;
 }
 export interface State {
     layoutKnown: boolean;
@@ -43,7 +43,7 @@ export default class SvgPanZoom extends Component<Props, State> {
     prTargetOuter: any;
     constructor(props: Props);
     dropNextEvt: number;
-    componentWillMount(): void;
+    componentDidMount(): void;
     render(): JSX.Element;
     _onLayout: (event: any) => void;
     getInitialViewTransform(canvasWidth: number, canvasHeight: any, scale: number): ViewTransform;
