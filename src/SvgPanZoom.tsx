@@ -219,7 +219,7 @@ export default class SvgPanZoom extends Component<Props, State> {
           viewStyle,
         ])}
         onLayout={this._onLayout}
-        {...this.prInstance.panHandlers}
+        {...(this.prInstance ? this.prInstance.panHandlers : {})}
       >
         <Animated.View
           style={{
