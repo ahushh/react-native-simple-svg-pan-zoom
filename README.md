@@ -9,7 +9,7 @@ This is a fork of `react-native-simple-svg-pan-zoom` which will be adapted to be
 ### Installing
 
 ```
-npm install react-svg-zoom@git@github.com:SuperDuperTrivia/react-svg-zoom.git
+yarn add https://github.com/SuperDuperTrivia/react-svg-zoom
 ```
 
 ## Usage
