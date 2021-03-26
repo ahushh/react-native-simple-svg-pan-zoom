@@ -1,5 +1,5 @@
 {
-  "name": "react-native-svg-pan-zoom",
+  "name": "react-svg-zoom",
   "version": "0.1.2",
   "description": "Pan-zoom for react-native-svg via 'Google Maps'-style pinch and drag gestures",
   "main": "index.js",
@@ -31,7 +31,7 @@
   "bugs": {
     "url": "https://github.com/garblovians/react-native-svg-pan-zoom/issues"
   },
-  "homepage": "https://github.com/garblovians/react-native-svg-pan-zoom#readme",
+  "homepage": "https://github.com/SuperDuperTrivia/react-svg-zoom#readme",
   "devDependencies": {
     "@types/react": "^16.0.27",
     "react": "^16.2.0",
