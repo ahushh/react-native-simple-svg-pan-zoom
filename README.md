@@ -1,15 +1,15 @@
-# react-native-svg-pan-zoom
+# react-svg-zoom
 
 Pan-zoom for [react-native-svg](https://github.com/react-native-community/react-native-svg) via "Google Maps"-style pinch and drag gestures.
 
 ## Getting Started
 
-This is a fork of `react-native-simple-svg-pan-zoom` that updates it to support react 17
+This is a fork of `react-native-simple-svg-pan-zoom` which will be adapted to be used with `react-native-web`.
 
 ### Installing
 
 ```
-npm i react-native-simple-svg-pan-zoom@git@github.com:zackify/react-native-simple-svg-pan-zoom.git
+npm install react-svg-zoom@git@github.com:SuperDuperTrivia/react-svg-zoom.git
 ```
 
 ## Usage
