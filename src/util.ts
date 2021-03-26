@@ -4,13 +4,13 @@ import {
   ViewDimensions,
 } from './interfaces';
 
-export function calcDistance(x1, y1, x2, y2) {
+export function calcDistance(x1: number, y1: number, x2: number, y2: number) {
   let dx = Math.abs(x1 - x2)
   let dy = Math.abs(y1 - y2)
   return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 }
 
-export function calcCenter(x1, y1, x2, y2) {
+export function calcCenter(x1: number, y1: number, x2: number, y2: number) {
 
   function middle(p1: { x: number, y: number }, p2: { x: number, y: number }): { x: number, y: number } {
     return {
@@ -29,6 +29,7 @@ export function calcCenter(x1, y1, x2, y2) {
   };
 }
 
+/*
 export function maxOffset(offset, windowDimension, imageDimension) {
   let max = windowDimension - imageDimension;
   if (max >= 0) {
@@ -36,6 +37,7 @@ export function maxOffset(offset, windowDimension, imageDimension) {
   }
   return offset < max ? max : offset;
 }
+*/
 
 export function createIdentityTransform() {
   return {

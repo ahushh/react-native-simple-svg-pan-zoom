@@ -7,6 +7,8 @@ import {
   Animated,
   ViewStyle,
   StyleSheet,
+  LayoutChangeEvent,
+  PanResponderGestureState,
 } from "react-native";
 
 import Svg from "react-native-svg";
@@ -76,14 +78,14 @@ export default class SvgPanZoom extends Component<Props, State> {
     canvasWidth: 720,
     minScale: 0.5,
     maxScale: 1.0,
-    initialZoom: 0.7,
+    initialZoom: 1.0,
     canvasStyle: {},
     viewStyle: {},
     onZoom: (zoom: number) => {},
   };
 
-  mainViewRef: any;
-  prInstance: PanResponderInstance;
+  mainViewRef?: View | null;
+  prInstance!: PanResponderInstance;
 
   prTargetSelf: any;
   prTargetOuter: any;
@@ -94,9 +96,9 @@ export default class SvgPanZoom extends Component<Props, State> {
     super(props);
 
     const vt = this.getInitialViewTransform(
-      props.canvasWidth,
-      props.canvasHeight,
-      props.initialZoom
+      props.canvasWidth!,
+      props.canvasHeight!,
+      props.initialZoom!
     );
 
     this.state = {
@@ -109,8 +111,8 @@ export default class SvgPanZoom extends Component<Props, State> {
 
       isScaling: false,
       initialDistance: 1,
-      initialTransform: createIdentityTransform(), //maybe null
-      initialScale: props.initialZoom,
+      initialTransform: createIdentityTransform(), // maybe null
+      initialScale: props.initialZoom!,
       initialTranslation: { x: 0, y: 0 },
 
       isMoving: false,
@@ -129,7 +131,7 @@ export default class SvgPanZoom extends Component<Props, State> {
 
   componentDidMount() {
     this.state.scaleAnimation.addListener((zoom) => {
-      this.props.onZoom(zoom.value);
+      if (this.props.onZoom) this.props.onZoom(zoom.value);
     });
 
     this.prInstance = PanResponder.create({
@@ -194,7 +196,9 @@ export default class SvgPanZoom extends Component<Props, State> {
           isMoving: false,
         });
       },
-      onPanResponderTerminate: (evt, gestureState) => {},
+      onPanResponderTerminate: (evt, gestureState) => {
+        this.prTargetSelf = null;
+      },
     });
   }
 
@@ -223,8 +227,8 @@ export default class SvgPanZoom extends Component<Props, State> {
       >
         <Animated.View
           style={{
-            width: canvasWidth,
-            height: canvasHeight,
+            width: canvasWidth!,
+            height: canvasHeight!,
             transform: [
               { translateX: this.state.TranslationAnimation.x },
               { translateY: this.state.TranslationAnimation.y },
@@ -235,8 +239,8 @@ export default class SvgPanZoom extends Component<Props, State> {
         >
           <SvgView
             style={{
-              width: canvasWidth,
-              height: canvasHeight,
+              width: canvasWidth!,
+              height: canvasHeight!,
             }}
           >
             {children}
@@ -248,8 +252,8 @@ export default class SvgPanZoom extends Component<Props, State> {
 
   // Utils
 
-  _onLayout = (event) => {
-    this.mainViewRef.measure((x, y, w, h, pageX, pageY) => {
+  _onLayout = (event: LayoutChangeEvent) => {
+    this.mainViewRef?.measure((x, y, w, h, pageX, pageY) => {
       this.setState({
         viewDimensions: {
           height: h,
@@ -265,7 +269,7 @@ export default class SvgPanZoom extends Component<Props, State> {
 
   getInitialViewTransform(
     canvasWidth: number,
-    canvasHeight,
+    canvasHeight: number,
     scale: number
   ): ViewTransform {
     return viewTransformMult(
@@ -293,8 +297,8 @@ export default class SvgPanZoom extends Component<Props, State> {
     };
 
     const zoomDisplacement = {
-      x: -(canvasWidth - canvasWidth * scale) / 2,
-      y: -(canvasHeight - canvasHeight * scale) / 2,
+      x: -(canvasWidth! - canvasWidth! * scale) / 2,
+      y: -(canvasHeight! - canvasHeight! * scale) / 2,
     };
 
     const pan = {
@@ -329,7 +333,7 @@ export default class SvgPanZoom extends Component<Props, State> {
     });
   };
 
-  processPinch = (x1, y1, x2, y2) => {
+  processPinch = (x1: number, y1: number, x2: number, y2: number) => {
     const distance = calcDistance(x1, y1, x2, y2);
 
     if (!this.state.isScaling) {
@@ -367,8 +371,8 @@ export default class SvgPanZoom extends Component<Props, State> {
     };
 
     const canvasCenter: Point = {
-      x: canvasWidth / 2,
-      y: canvasHeight / 2,
+      x: canvasWidth! / 2,
+      y: canvasHeight! / 2,
     };
 
     //When initial scale of canvas is different from 1, the pinch center point will be translated.
@@ -408,8 +412,8 @@ export default class SvgPanZoom extends Component<Props, State> {
     const newTransform: ViewTransform = getBoundedPinchTransform(
       viewTransform,
       viewTransformMult(viewTransform, transform),
-      minScale,
-      maxScale
+      minScale!,
+      maxScale!
     );
 
     Animated.parallel([
@@ -430,7 +434,7 @@ export default class SvgPanZoom extends Component<Props, State> {
     });
   };
 
-  processTouch = (gestureState) => {
+  processTouch = (gestureState: PanResponderGestureState) => {
     if (!this.state.isMoving) {
       this.setState({
         isMoving: true,
@@ -466,8 +470,8 @@ export default class SvgPanZoom extends Component<Props, State> {
       viewTransform,
       viewTransformMult(viewTransform, tranlationMatrix),
       viewDimensions,
-      canvasWidth,
-      canvasHeight
+      canvasWidth!,
+      canvasHeight!
     );
 
     Animated.timing(this.state.TranslationAnimation, {

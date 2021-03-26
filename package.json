@@ -2,9 +2,10 @@
   "name": "react-svg-zoom",
   "version": "0.1.2",
   "description": "Pan-zoom for react-native-svg via 'Google Maps'-style pinch and drag gestures",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,19 +26,23 @@
   ],
   "authors": [
     "Lukas Hedegaard <lxhdgd@gmail.com> (https://github.com/LukasHedegaard)",
-    "Søren Peter Andersen (https://github.com/sorenpa)"
+    "Søren Peter Andersen (https://github.com/sorenpa)",
+    "Yoshi Jaeger (https://github.com/SmartArray)"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/garblovians/react-native-svg-pan-zoom/issues"
   },
   "homepage": "https://github.com/SuperDuperTrivia/react-svg-zoom#readme",
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-native": "^0.64.0"
+  },
   "devDependencies": {
     "@types/react": "^16.0.27",
-    "react": "^16.2.0",
-    "react-native": "^0.50.0",
-    "react-native-svg": "^6.0.0",
-    "typescript": "^2.6.2"
+    "@types/react-native": "^0.64.1",
+    "react-native-svg": "^12.1.0",
+    "typescript": "^4.2.3"
   },
   "dependencies": {}
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { GestureResponderEvent } from 'react-native';
 import { G } from 'react-native-svg';
+
 const GView = G as any
 
 export interface Props {
@@ -28,24 +30,24 @@ export default class ResponderElement extends Component<Props,State> {
       <GView
         x={this.props.x}
         y={this.props.y}
-        onStartShouldSetResponder={(evt) => true}
-        onMoveShouldSetResponder={(evt) => false}
-        onResponderGrant={(evt) => { 
+        onStartShouldSetResponder={(evt: GestureResponderEvent) => true}
+        onMoveShouldSetResponder={(evt: GestureResponderEvent) => false}
+        onResponderGrant={(evt: GestureResponderEvent) => { 
           this.releasedNaturally = true
-          this.props.onClick(evt)
+          if (this.props.onClick) this.props.onClick(evt)
         }}
-        onResponderTerminationRequest={(evt) => {
+        onResponderTerminationRequest={(evt: GestureResponderEvent) => {
           if (evt.nativeEvent.touches.length > 1) {
             this.releasedNaturally = false
             return true
           }
-          this.props.onClickCanceled(evt)
+          if (this.props.onClickCanceled) this.props.onClickCanceled(evt)
           return false
         }}
         onResponderMove={this.props.onDrag}
-        onResponderRelease={(evt) => {
+        onResponderRelease={(evt: GestureResponderEvent) => {
           if (this.releasedNaturally) {
-            this.props.onClickRelease(evt)
+            if (this.props.onClickRelease) this.props.onClickRelease(evt)
             this.releasedNaturally = true
           }
         }}
